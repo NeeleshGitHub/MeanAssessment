@@ -1,0 +1,27 @@
+<body>
+  
+   <br><br><br>
+   <input type="search" placeholder="Search here" [(ngModel)]="searchText">
+   <br><br> 
+   <div class="container">
+     <section id="products">
+       <div class="row">
+ 
+         <td *ngFor="let mov of movie | search: searchText">
+         <div class="col-md-3">
+           <div class="thumbnail">
+           <img src="{{mov.movImg}}" width="250px" height="400px">
+             <div class="caption">
+               <h3>{{mov.movName}}</h3>
+               <h4>{{mov.genres}}</h4>
+               <h5>{{mov.desc}}</h5>
+                 
+             </div>
+           </div>
+         </div>
+         </td>
+       
+       </div>
+     </section>
+   </div>
+ </body>

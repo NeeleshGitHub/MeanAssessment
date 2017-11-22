@@ -1,0 +1,37 @@
+body{
+    background: grey;
+
+}
+
+option
+{
+align:right;
+margin-left: 200px; 
+background: grey;
+}
+select{
+    background-color: black;
+    color: grey;
+}
+
+.col-md-3{
+    width: 600px;
+    height:800px ;
+    align-content: center;
+    background: grey;
+}
+img{
+    width: 600px;
+    height:600px ;
+}
+/* .caption{
+    width: 400px;
+    height:100px ;
+    align-content: center;
+    
+} */
+
+button{
+    width: 150px;
+    align-content: center;
+}

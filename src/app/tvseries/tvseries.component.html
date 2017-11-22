@@ -1,0 +1,27 @@
+<body>
+  
+   <br><br><br>
+   <input type="search" placeholder="Search here" [(ngModel)]="searchText">
+   <br><br>
+   <div class="container">
+     <section id="products">
+       <div class="row">
+
+         <td *ngFor="let ser of tvseries | searcht: searchText">
+         <div class="col-md-3">
+           <div class="thumbnail">
+           <img src="{{ser.tvImg}}" >
+             
+               <h4>Series Name :{{ser.tvName}}</h4>
+               <h4>Genres :{{ser.genres}}</h4>
+               <h5>Description :{{ser.desc}}</h5>
+                 
+            
+           </div>
+         </div>
+         </td>
+       
+       </div>
+     </section>
+   </div>
+ </body>

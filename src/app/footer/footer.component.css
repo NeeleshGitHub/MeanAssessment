@@ -1,0 +1,13 @@
+footer{
+    
+     /* width: auto;
+    bottom: 2000px;
+     height: 35px;
+     background: #6EC6D1;
+     margin: auto;  */
+
+
+	
+position:fixed;bottom:0;left:0;right:0;height:30px ;color:#FFFFFF;
+background-color: #161414;
+ }

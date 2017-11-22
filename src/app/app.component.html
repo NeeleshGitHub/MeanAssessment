@@ -1,0 +1,37 @@
+<body>
+  <app-header></app-header>
+  
+  
+  <div  class="scrollmenu">
+  
+      
+   <a  [routerLink]="['/Home']"><span class="glyphicon glyphicon-home"> Home </span></a>
+  
+        
+         <ng-template [ngIf]="!service.isLoggedIn()">
+       
+             <a [routerLink]="['/Login']"><span class="glyphicon glyphicon-log-in"> Login </span></a>
+          <!-- <button type="button"  > Login </button></a> -->
+          
+          <a [routerLink]="['/Signup']"><span class="glyphicon glyphicon-user"> Signup </span></a>
+           
+        </ng-template>
+                <ng-template [ngIf]="service.isLoggedIn()">
+                
+                <a [routerLink]="['/Home']" (click)="doThis()" >
+                    <span class="glyphicon glyphicon-log-out"> Logout </span></a>
+
+                   
+                  </ng-template>
+                   <!-- <a [routerLink]="['/user']" class="pull-right" >
+                      <button type="button" class="btn btn-success"> <span class="	glyphicon glyphicon-arrow-left">
+                        </span> Back</button> </a>
+                   -->
+       </div>
+    
+       <div id="body">
+  <router-outlet></router-outlet>
+  </div>
+  
+  <app-footer></app-footer>
+  </body>

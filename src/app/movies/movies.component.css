@@ -1,0 +1,25 @@
+body{
+    background-color: grey;
+}
+option{
+    align:right;
+margin-left: 250px; 
+background-color: black;
+}
+select{
+    background-color: #442727;
+    color: white;
+}
+
+.col-md-3{
+    width: 300px;
+    height:600px ;
+}
+img{
+    width: 200px;
+    height:300px ;
+}
+.caption{
+    width: 200px;
+    height:150px ;
+}

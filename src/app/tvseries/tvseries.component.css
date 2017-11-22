@@ -1,0 +1,27 @@
+body{
+    background-color: grey;
+    width: auto;
+}
+option{
+    align :right;
+
+background-color: black;
+}
+select{
+    background-color: black;
+    color: grey;
+}
+.thumbnail{
+    width: 300px;
+    height: 450px ;
+}
+
+img{
+    width:  250px;
+    height: 400px ;
+}
+.caption{
+    width: 250px;
+    height: 150px ;
+    background: #EEEAEA
+}
