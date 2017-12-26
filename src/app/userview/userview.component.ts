@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
+import { AuthenticateService } from '../authenticate.service';
+import { Http, RequestOptions, Headers } from '@angular/http';
+
 
 @Component({
   selector: 'app-userview',
@@ -7,11 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserviewComponent implements OnInit {
   showAdmin ='';
-  constructor() { 
-    this.showAdmin = localStorage.getItem('role');
+  constructor(private service : AuthenticateService, private http: Http, private el: ElementRef) { 
+    this.showAdmin = this.service.role;
   }
 
   ngOnInit() {
   }
+
 
 }

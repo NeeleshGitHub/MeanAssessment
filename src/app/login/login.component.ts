@@ -27,16 +27,19 @@ export class LoginComponent implements OnInit {
 login(email: string, password: string) {
   this.loginService.onLogin(email)
   .subscribe(res => {
-    this.user = JSON.parse(res.text());
-    if (this.user == null) {
-      console.log('Error occurred');
-      alert('Error occurred ');
-    } else if (this.user.password === password) {
-      this.service.email=this.user.email;
-      console.log(this.user.email);
-      localStorage.setItem('role', this.user.role);
+    var token = JSON.parse(res.text()).token;
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace('-', '+').replace('_', '/');
+    this.service.email = JSON.parse(window.atob(base64)).email;
+    var pass = JSON.parse(window.atob(base64)).password;
+    this.loginService.role = JSON.parse(window.atob(base64)).role;
+    if (res == null) {
+      console.log('Error occurred null');
+      alert('Error occurred null');
+    } else if (pass === password) {
+      console.log(this.service.email);
       localStorage.setItem('email', this.user.email);
-      this.service.email = this.user.email;
+      localStorage.setItem('jwt', this.user.token);
       this.router.navigate(['/userview']);
       this.service.exit = false;
       return this.service.exit;

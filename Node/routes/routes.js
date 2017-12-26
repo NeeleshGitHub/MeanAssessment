@@ -30,4 +30,9 @@ router.route('/t3/deleteMovie/:name')
 router.route('/t3/deleteTv/:name')
     .delete(controller.deleteTv);
 
+router.route('/t3/deleteEpisode/:name')   
+    .delete(controller.deleteEpisode); 
+
+router.route('/t3/upload').post(controller.uploadImage);
+
 module.exports = router;

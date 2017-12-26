@@ -35,15 +35,26 @@ var tvData = new Schema({
 
 });
 
+var episodeData = new Schema({
+    Episodenumber: { type:Number, unique: true},
+    epiImg: { type: String }
+
+});
+
 
 
 var Signup = mongoose.model('signupData', signupSchema);
 var Movie = mongoose.model('movieData', movieData);
 var Tvseries = mongoose.model('tvData', tvData);
+var Episode = mongoose.model('episodeData', episodeData);
 
 module.exports = {
     Signup:Signup,
     Movies:Movie,
-    Tvseries:Tvseries
+    Tvseries:Tvseries,
+    Episode:Episode
+
 
 }
+
+

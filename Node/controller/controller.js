@@ -2,14 +2,68 @@ var mongoose = require('mongoose');
 var Signup = mongoose.model('signupData');
 var Movie = mongoose.model('movieData');
 var Tv = mongoose.model('tvData');
+var Episode = mongoose.model('episodeData');
+var jwt  = require("jsonwebtoken");
+var multer = require('multer');
+// var nodemailer = require('nodemailer');
 
+// var transporter = nodemailer.createTransport({
+//     service: 'gmail',
+//     auth: {
+//         user: 'nmish28@gmail.com',
+//         pass: 'Nmish2802'
+//     }
+// });
+
+
+
+exports.uploadImage = (req, res) => {
+    var storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            // console.log(file);
+            cb(null, 'src/assets/images');
+        },
+        filename: function (req, file, cb) {
+            console.log(file.originalname);
+            cb(null, 'KuchBhi.jpg');
+        }
+    });
+    // console.log(storage);
+    var upload = multer({ storage: storage }).any('profileImage');
+    upload(req, res, error=> {
+        console.log(req);
+        if(error) {
+             return res.json(error);
+        } 
+        res.json({
+            message: ' Image Uploaded !!',
+            // path: req.params.email + '.jpg'
+        })
+    }) ;
+}
+
+exports.verifyLogin = function (req, res, next) {
+    var token = req.body.token || req.query.token || req.headers['x-access-token'] || req.headers.authorization;
+    if (token) { // verifies secret and checks exp 
+        jwt.verify(req.headers.authorization.split(' ')[1], 'secret',
+            function (err, decoded) {
+                if (err) { //failed verification.
+                    return res.json({ "error": true });
+                }
+                req.decoded = decoded;
+                next(); // no error, proceed 
+            });
+    } else { // forbidden without token 
+        return res.status(403).send({ "error": "unauthorized user" });
+    }
+}
 
 exports.createUser = (req, res) => {
     var signup = new Signup({
         email: req.body.email,
         name: req.body.name,
         password: req.body.password,
-        totalCost: 0,
+        role: req.body.role,
         created_at: new Date(),
         updated_at: ""
     });
@@ -45,9 +99,11 @@ exports.getUser = (req, res) => {
         if (error) {
             return res.json(error)
         }
-        res.json(response);
+        let token = jwt.sign({email: response.email, password: response.password, role: response.role} ,'secret');        
+        res.json({response: response,password: response.password, token :token});
     });
 }
+
 
 exports.insertMovie = (req,res) => {
     var movies = new Movie ({
@@ -102,6 +158,7 @@ exports.getAllMovies = (req, res) => {
         if (error) {
             return res.json(req, res, error);
         }
+     //   let token = jwt.sign({response: response} ,'secret');        
         res.json(response);
     });
 }
@@ -133,6 +190,16 @@ exports.deleteTv = (req, res) => {
         }
         res.json(response);
     });
+}
+
+exports.deleteEpisode = (req, res) => {
+    Episode.remove({ name: req.body.name }, (error, response) => {
+        if (error){
+            return res.json(req, res, error);
+        }
+        res.json(response);
+    });
+
 }
 
 
