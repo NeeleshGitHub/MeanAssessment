@@ -13,15 +13,15 @@ export class AuthenticateService {
   role : string;
   address = 'http://192.168.15.62:8888/api/t3/';
 
-  // setToken() {
-  //   const token = localStorage.getItem('token');
-  //   if (token !== null) {
-  //     const base64Url = token.split('.')[1];
-  //     const base64 = base64Url.replace('-', '+').replace('_', '/');
-  //     this.email = JSON.parse(window.atob(base64)).email;
-  //     this.role = JSON.parse(window.atob(base64)).role;
-  //   }
-  // }
+  setToken() {
+     const token = localStorage.getItem('token');
+     if (token !== null) {
+       const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace('-', '+').replace('_', '/');
+       this.email = JSON.parse(window.atob(base64)).email;
+       this.role = JSON.parse(window.atob(base64)).role;
+     }
+   }
 
   setHeader(){
     const headers = new Headers({
