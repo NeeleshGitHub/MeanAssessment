@@ -17,7 +17,7 @@ var multer = require('multer');
 
 
 
-exports.uploadImage = (req, res) => {
+/* exports.uploadImage = (req, res) => {
     var storage = multer.diskStorage({
         destination: function (req, file, cb) {
             // console.log(file);
@@ -40,7 +40,7 @@ exports.uploadImage = (req, res) => {
             // path: req.params.email + '.jpg'
         })
     }) ;
-}
+}  */
 
 exports.verifyLogin = function (req, res, next) {
     var token = req.body.token || req.query.token || req.headers['x-access-token'] || req.headers.authorization;
